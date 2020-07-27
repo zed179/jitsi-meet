@@ -115,3 +115,13 @@
         font-size: 12px;
     }
 }
+
+.jibri-queue-info {
+    display: flex;
+    flex-flow: column;
+
+
+    .position {
+        margin-top: 20px;
+    }
+}

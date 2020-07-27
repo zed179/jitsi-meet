@@ -271,7 +271,9 @@ function initCommands() {
                 return;
             }
 
-            conference.startRecording(recordingConfig);
+            conference.startRecording(recordingConfig).catch(() => {
+                // prevent unhandled promise rejection.
+            });
         },
 
         /**
@@ -298,8 +300,10 @@ function initCommands() {
 
             const activeSession = getActiveSession(state, mode);
 
-            if (activeSession && activeSession.id) {
-                conference.stopRecording(activeSession.id);
+            if (activeSession && (activeSession.id || activeSession.queueID)) {
+                conference.stopRecording(activeSession.id, activeSession.queueID).catch(() => {
+                    // prevent unhandled promise rejection.
+                });
             } else {
                 logger.error('No recording or streaming session found');
             }
