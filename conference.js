@@ -1207,7 +1207,7 @@ export default {
     // end used by torture
 
     getLogs() {
-        return room.getLogs();
+        return APP.connection.getLogs();
     },
 
     /**
